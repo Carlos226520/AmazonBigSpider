@@ -70,7 +70,9 @@ mysql> exit
 # scp go1.8压缩包到远程机器
 # scp xxxx.tar.gz  ssh@IP:
 # 安装golang1.8
-tar -zxvf xxxx.tar.gz
+# 最新: 直接获取go1.9
+wget https://studygolang.com/dl/golang/go1.9.2.linux-amd64.tar.gz
+tar -zxvf go1.9.2.linux-amd64.tar.gz
 vim /etc/profile.d/myenv.sh
 
 >>>>
@@ -100,14 +102,19 @@ mysql> show databases;
 mysql> exit
 
 
-# 方式一: 初始化数据库: 使用我抓取好的类目URL, 方式二见最后
+# 方式一(推荐): 初始化数据库: 使用我抓取好的类目URL, 方式二见最后
 cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider/doc/sql
 cp * $HOME/mydocker/mysql/conf/
+
+# 类目已经更新了, 现在要导入这个
+cp days/usa_category20171026.sql $HOME/mydocker/mysql/conf/
+
 docker exec -it  GoSpider-mysqldb mysql -uroot -p459527502
 
 source /etc/mysql/conf.d/jp_category.sql
 source /etc/mysql/conf.d/de_category.sql
-source /etc/mysql/conf.d/usa_category.sql
+source /etc/mysql/conf.d/usa_category20171026.sql
+#source /etc/mysql/conf.d/usa_category.sql
 source /etc/mysql/conf.d/uk_category.sql
 
 
@@ -190,7 +197,7 @@ chmod 777 file
 # 第二天起就自动了
 
 
-# 以下需要专业人员进行, 请勿操作
+# 以下需要专业人员进行, 请勿操作(勿动)
 # 接着特殊的: 方式二:初始化数据库(包括获取类目URL, 请耐心依次进行, 三个月一次)
 # 需要先进数据库删除数据, 请逐行操作, (cdddddddddd@qq.com请换为自己的用户名: 参见:https://proxy.mimvp.com)
 cd $GOPATH/src/github.com/hunterhug/AmazonBigSpider/tool/url/
