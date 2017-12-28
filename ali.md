@@ -1,4 +1,6 @@
-机器配置
+# 阿里云ubuntu安装记录
+
+机器配置:
 
 ```
 root@iZwz9j36enzsqt8ab9tvkxZ:~# lsb_release -a
@@ -23,6 +25,9 @@ tmpfs           497M     0  497M   0% /sys/fs/cgroup
 tmpfs           100M     0  100M   0% /run/user/0
 
 ```
+
+`Centos`系统操作命令略有不同, 请将`apt`换成`yum`, 其他命令差异请自行解决.
+
 以下是执行过程(全过程, 小白操作):
 
 ```
@@ -33,6 +38,10 @@ ssh root@IP
 apt update
 apt install git
 
+# 安装必要软件
+apt install docker.io
+apt install docker-compose
+
 # 更新hosts, 复制主机名到hosts
 cat /etc/hostname
 vim /etc/hosts
@@ -41,15 +50,13 @@ vim /etc/hosts
 0.0.0.0 iZwz9j36enzsqt8ab9tvkxZ
 >>>
 
+# 此后还要保证网络畅通, 提高ulimit的数量, 并且最好添加docker加速器
+
 # 拉代码
 mkdir -p ~/gocode/src/github.com/hunterhug
 cd ~/gocode/src/github.com/hunterhug
 git clone https://github.com/hunterhug/AmazonBigSpider
 git clone https://github.com/hunterhug/AmazonBigSpiderWeb
-
-# 安装必要软件
-apt install docker.io
-apt install docker-compose
 
 # 启动MYSQL和Redis
 cd AmazonBigSpider/sh/docker
@@ -111,10 +118,17 @@ cp days/usa_category20171026.sql $HOME/mydocker/mysql/conf/
 
 docker exec -it  GoSpider-mysqldb mysql -uroot -p459527502
 
+user jp_smart_base
 source /etc/mysql/conf.d/jp_category.sql
+
+user de_smart_base
 source /etc/mysql/conf.d/de_category.sql
+
+user smart_base
 source /etc/mysql/conf.d/usa_category20171026.sql
 #source /etc/mysql/conf.d/usa_category.sql
+
+user uk_smart_base
 source /etc/mysql/conf.d/uk_category.sql
 
 
@@ -190,9 +204,11 @@ go build
 ./AmazonBigSpiderWeb -s
 nohup ./AmazonBigSpiderWeb &
 mkdir file
-chmod 777 file
+mkdir file/data
+mkdir file/back
+chmod 777 -R file
 
-打开浏览器输入: /IP:8080
+打开浏览器输入: /IP:80
 
 # 第二天起就自动了
 
