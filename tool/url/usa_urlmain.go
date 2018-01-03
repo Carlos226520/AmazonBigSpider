@@ -55,7 +55,7 @@ func main() {
 		level0(listlevel1)    //2
 		fmt.Println("End")
 	}
-}go run usa_urlmain.go -toolproxy=false -toolstep=0
+}
 
 // so ! what !
 func Good(level int) {
