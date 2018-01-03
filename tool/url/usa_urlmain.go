@@ -19,18 +19,20 @@ package main
 // 手动执行啊, 大兄弟
 import (
 	"fmt"
+	"strings"
+
 	"github.com/PuerkitoBio/goquery"
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/core"
 	"github.com/hunterhug/marmot/expert"
 	"github.com/hunterhug/parrot/util"
-	"strings"
 )
 
 var urlchan chan string
 var proxy bool = false
 var num int = 20
 var wait int = 0
+var 
 
 func main() {
 	if AmazonBigSpider.Local {
@@ -46,12 +48,12 @@ func main() {
 	util.MakeDir(core.MyConfig.Datadir + "/url/2")
 	util.MakeDir(core.MyConfig.Datadir + "/url/3")
 	util.MakeDir(core.MyConfig.Datadir + "/url/4")
-	listlevel1 := index() //1
-	level0(listlevel1)    //2
 	switch AmazonBigSpider.ToolStep {
 	case 1, 2, 3, 4:
 		Good(AmazonBigSpider.ToolStep)
 	default:
+		listlevel1 := index() //1
+		level0(listlevel1)    //2
 		fmt.Println("End")
 	}
 }
@@ -244,6 +246,9 @@ func index() []string {
 	indexok := util.FileExist(index)
 	indexmdok := util.FileExist(indexmd)
 	url := core.URL + "/gp/bestsellers"
+	if AmazonBigSpider.ToolNew {
+		url := core.URL + "/gp/new-releases"
+	}
 	ip := "*task1"
 	if indexmdok && indexok {
 		fmt.Println("首页抓取和处理成功")

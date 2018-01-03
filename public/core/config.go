@@ -19,14 +19,15 @@ package core
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"strings"
+
 	"github.com/hunterhug/AmazonBigSpider"
 	"github.com/hunterhug/AmazonBigSpider/public/log"
 	spider "github.com/hunterhug/marmot/miner"
 	"github.com/hunterhug/parrot/store/myredis"
 	"github.com/hunterhug/parrot/store/mysql"
 	"github.com/hunterhug/parrot/util"
-	"os"
-	"strings"
 )
 
 var (

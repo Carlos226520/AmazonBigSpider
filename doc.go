@@ -35,6 +35,7 @@ var CoreDir = filepath.Join(Dir, "public", "core")
 var Local = true
 var ToolStep int = 0
 var ToolProxy bool = false
+var ToolNew bool = false
 var User = ""
 
 func init() {
@@ -43,12 +44,14 @@ func init() {
 	temp := flag.Int("toolstep", 0, "which step get category url")
 	temp1 := flag.Bool("toolproxy", false, "proxy get category url?")
 	temp2 := flag.String("user", "", "user")
+	temp3 := flag.Bool("toolnew", false, "catch new url?")
 	if !flag.Parsed() {
 		flag.Parse()
 	}
 
 	ToolStep = *temp
 	ToolProxy = *temp1
+	ToolNew = *temp3
 	User = *temp2
 	if *rootdir != "" {
 		Dir = *rootdir
@@ -61,22 +64,4 @@ func init() {
 		Local = false
 		fmt.Println("远程方式！！！")
 	}
-
-	//addrs, err := net.InterfaceAddrs()
-	//
-	//if err != nil {
-	//	fmt.Println(err)
-	//} else {
-	//
-	//	for _, address := range addrs {
-	//
-	//		// 检查ip地址判断是否回环地址
-	//		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-	//			if ipnet.IP.To4() != nil {
-	//				fmt.Println(ipnet.IP.String())
-	//			}
-	//
-	//		}
-	//	}
-	//}
 }

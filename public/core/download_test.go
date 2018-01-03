@@ -18,10 +18,11 @@ package core
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/hunterhug/AmazonBigSpider"
 	spider "github.com/hunterhug/marmot/miner"
 	"github.com/hunterhug/parrot/util"
-	"testing"
 )
 
 // https://www.amazon.com/Best-Sellers-Automotive-Performance-ABS-Brake-Parts/zgbs/automotive/15710931/ref=zg_bs_pg_1?_encoding=UTF8&pg=1&ajax=1
@@ -30,6 +31,8 @@ import (
 // https://www.amazon.com/Best-Sellers-Automotive-Performance-ABS-Brake-Parts/zgbs/automotive/15710931/ref=zg_bs_pg_4?_encoding=UTF8&pg=4&ajax=1
 // https://www.amazon.com/Best-Sellers-Automotive-Performance-ABS-Brake-Parts/zgbs/automotive/15710931/ref=zg_bs_pg_5?_encoding=UTF8&pg=5&ajax=1
 // https://www.amazon.com/dp/B001IHBLPC
+
+// https://www.amazon.com/gp/new-releases/kitchen/1063916/ref=zg_bsnr_pg_3?ie=UTF8&pg=3&ajax=1
 func TestAsinDownload(t *testing.T) {
 	util.MakeDir(AmazonBigSpider.Dir + "/test/asin/")
 	ip := "104.128.124.122:808"
@@ -84,6 +87,7 @@ func TestListDownload(t *testing.T) {
 	}
 	util.SaveToFile(AmazonBigSpider.Dir+"/test/list/xxx2.html", content)
 }
+
 /*
 	版权所有，侵权必究
 	署名-非商业性使用-禁止演绎 4.0 国际
