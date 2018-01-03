@@ -6,6 +6,35 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
+Now this Project is not support English instruction, If you fell intersting in it, welcome email me.
+
+## 最新说明
+
+开发这个产品从2016年10月就开始了, 目前迭代从2.0开始.
+
+此项目可以持续优化成功一个更好的平台, 因为国内目前还没有像淘宝数据参谋一样的亚马逊数据参谋. 由于高并发百万级每天导致的数据抓取速度问题, 和数据获取后的清洗和挖掘问题, 我们可以在以下方面做得更好. 
+
+1. 首先数据抓取速度保证和爬虫部署问题, 可以采用`Docker`自动构建, 构建`kubernetes`集群进行`deployments`部署, 自动跨容和缩容爬虫服务, 分布式爬虫不再需要手工上去跑任务.
+2. 其次数据保存在`MYSQL`产生的分表问题, 因为`MYSQL`是非分布式的集中式关系型数据库, 大量数据导致数据查找困难, 多表间数据`union`和`join`困难, 所以可以采用`ElasticSearch`来替换`MYSQL`, 著名的`JAVA Nutch搜索引擎框架`使用的就是`ES`.
+3. 最后, 关于数据获取后的清洗和挖掘问题, 是属于离线操作问题, 保存在`ES`的数据本身支持各种搜索,`ES`的文本搜索能力超出你的想象, 一般需求可以满足, 不能满足的需求则要从`ES`抽取数据, 构建不同主题的数据仓库进行定制化挖掘. 此部分, 需要开发另外的项目.
+4. 配套的`UI`网站端可以有更好的用户体验, 目前基本可以满足选款的需求, 商品的各种数据优美的显示出来.
+
+鉴于本人精力有限, 从事云计算开发工作繁忙, 无暇多开发新功能, 有更多需求可来邮. 目前搭了一套[亚马逊电子商务大数据智能平台](http://aws.lenggirl.com), 您可以上去观摩, 帐号密码均为`admin`, 切勿破坏, 且行且珍惜. 如果您是一名开发, 您觉得不错, 学习到了知识, 可以扫描下方二维码友情赞助. 如果你是一个电商服务公司的老板, 或者是从业者, 急需使用到该平台来进行选款, 洞察商品变化趋势, 可以来邮咨询, 我提供有偿搭建服务, 价格合理, 完全划得来.
+
+核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/marmot)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://github.com/hunterhug/rabbit)
+
+如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
+
+微信
+![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
+
+支付宝
+![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
+
+爬虫有风险, 本人不承担由此开源项目带来的任何责任。
+
+## 版本说明
+
 v2.0
 
 1. 增加安装详细说明
@@ -567,20 +596,6 @@ BI产品爬虫端的价值大，但是配套网站端，价值可以翻好多倍
 # 四. 欢迎提建议（BUG等）
 
 如果你想参与项目，我很欢迎，请发邮件或加我QQ。
-
-# 五. 心路历程
-
-开发这个产品从2016年10月就开始了, 目前迭代从2.0开始.
-
-核心的爬虫包也已经拆分成库了，见[Project:Marmot(Tubo) - Golang Web Spider/Crawler/Scrapy Package | 爬虫库](https://github.com/hunterhug/marmot)。网站端也拆分成库了[Project:Rabbit(Tuzi) - Golang Enterprise Web | 简单企业网站](https://github.com/hunterhug/rabbit)
-
-如果这个产品有帮助到你,可以抛出请我吃下辣条吗?
-
-微信
-![微信](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/wei.png)
-
-支付宝
-![支付宝](https://raw.githubusercontent.com/hunterhug/hunterhug.github.io/master/static/jpg/ali.png)
 
 # 免责声明
 
