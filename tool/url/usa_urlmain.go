@@ -32,7 +32,6 @@ var urlchan chan string
 var proxy bool = false
 var num int = 20
 var wait int = 0
-var 
 
 func main() {
 	if AmazonBigSpider.Local {
