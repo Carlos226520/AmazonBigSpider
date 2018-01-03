@@ -218,6 +218,9 @@ func MapUrl(spidertype int) {
 	switch spidertype {
 	case USA:
 		urlconfig = "usa_url.csv"
+		if AmazonBigSpider.ToolNew {
+			urlconfig = "usa_release_url.csv"
+		}
 	case JP:
 		urlconfig = "jp_url.csv"
 	case UK:
