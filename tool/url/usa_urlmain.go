@@ -55,7 +55,7 @@ func main() {
 		level0(listlevel1)    //2
 		fmt.Println("End")
 	}
-}
+}go run usa_urlmain.go -toolproxy=false -toolstep=0
 
 // so ! what !
 func Good(level int) {
@@ -246,7 +246,7 @@ func index() []string {
 	indexmdok := util.FileExist(indexmd)
 	url := core.URL + "/gp/bestsellers"
 	if AmazonBigSpider.ToolNew {
-		url := core.URL + "/gp/new-releases"
+		url = core.URL + "/gp/new-releases"
 	}
 	ip := "*task1"
 	if indexmdok && indexok {

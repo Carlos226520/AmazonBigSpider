@@ -245,7 +245,7 @@ func index() []string {
 	indexmdok := util.FileExist(indexmd)
 	url := core.URL + "/gp/bestsellers"
 	if AmazonBigSpider.ToolNew {
-		url := core.URL + "/gp/new-releases"
+		url = core.URL + "/gp/new-releases"
 	}
 	ip := "*task1"
 	if indexmdok && indexok {
