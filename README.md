@@ -6,7 +6,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/hunterhug/AmazonBigSpider)](https://goreportcard.com/report/github.com/hunterhug/AmazonBigSpider)
 [![GitHub issues](https://img.shields.io/github/issues/hunterhug/AmazonBigSpider.svg)](https://github.com/hunterhug/AmazonBigSpider/issues)
 
-Now this Project is not support English instruction, If you fell intersting in it, welcome email me.
+Now this Project is not support English instruction, If you feel intersting in it, welcome email me.
 
 ## 最新说明
 
