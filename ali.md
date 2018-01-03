@@ -272,3 +272,24 @@ docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 de_smart_base smar
 docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 uk_smart_base smart_category>uk_category$(date +\%Y\%m\%d).sql;
 docker exec -it GoSpider-mysqldb mysqldump -uroot -p459527502 jp_smart_base smart_category>jp_category$(date +\%Y\%m\%d).sql;
 ```
+
+
+支持`https://www.amazon.com/gp/new-releases`:
+
+```
+5 0 * * * ps -ef|grep usa/U* | awk '{print $2}' |xargs -i kill {}
+20 0 * * * docker exec -d GoSpider-redis redis-cli -a GoSpider flushall
+10 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+15 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+20 2 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+0 3 * * * nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+*/1 * * * * curl http://127.0.0.1:12345/mi?orderid=cdddddddddd@qq.com\&user=jinhan\&password=459527502 > /dev/null 2>&1 &
+```
+
+
+```
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UURL -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UIP -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/ULIST -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+nohup /root/gocode/src/github.com/hunterhug/AmazonBigSpider/spiders/usa/UASIN -core=/root/gocode/src/github.com/hunterhug/AmazonBigSpider/public/core -root=/root/gocode/src/github.com/hunterhug/AmazonBigSpider -toolnew=1 > /dev/null 2>&1 &
+```
