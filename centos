@@ -1,0 +1,12 @@
+Centos安装记录:
+
+```
+yum update
+yum install git
+yum install vim
+yum install docker
+
+git clone https://github.com/sillybobo/AmazonBigSpider
+git clone https://github.com/sillybobo/AmazonBigSpiderWeb
+
+```
