@@ -2,6 +2,7 @@ version: '2'
 services:
     redis: 
       container_name: "GoSpider-redis"
+      restart: always
       image: redis:3.2
       ports: 
         - "6379:6379"
@@ -11,6 +12,7 @@ services:
       command: redis-server /usr/local/etc/redis/redis.conf
     mysqldb: 
       container_name: "GoSpider-mysqldb"
+      restart: always
       image: mysql:5.7
       ports: 
         - "3306:3306"
