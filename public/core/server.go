@@ -182,7 +182,7 @@ func mi(rw http.ResponseWriter, req *http.Request) {
 			io.WriteString(rw, fmt.Sprintf("still has ip:%d", num))
 			return
 		}
-		url := "http://proxy.mimvp.com/api/fetch.php?orderid=%s&num=100&result_format=json&anonymous=5&result_fields=1,2,3,4,5&http_type=1,2"
+		url := "http://proxy.mimvp.com/api/fetch.php?orderid=%s&num=100&result_format=json&anonymous=5&result_fields=1,2,3,4,5&http_type=1,2,5"
 		sp := spider.NewAPI()
 		sp.Url = fmt.Sprintf(url, orderid)
 		data, err := sp.Get()
