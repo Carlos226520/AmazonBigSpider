@@ -10,29 +10,7 @@
 
 ## 一. 介绍
 
-### 1. 英语介绍
-
-Support UAS/Japan/Germany/UK, Amazing!
-
-Catch the best seller items in Amazon USA! Using redis to store proxy ip and the category url. First fetch items list and then collect many Asin, store in mysql. Items list catch just for the Asin, and we suggest one month or several weeks to fetch list page. We just need fetch the Asin detail page and everything we get!
-
-We keep all Asin in one big table. And if catch detail 404, we set it as not valid. Also we can use API catch big rank but look not so good!
-
-So, there are two ways to get the big rank：
-
-1. catch list page(not proxy), using API get the big rank
-
-2. catch list page(not proxy), and then get asin detail page(proxy), API can not catch all the asin big rank so must use this!
-
-Due to we want list smallrank and the bigrank at the same time, but mysql update is so slow, we make two tables to save, one is smallrank, one is bigrank!
-
-We test a lot,if a ip no stop and more than 500 times http get,the list page will no robot,but the detail asin page will be robot. So we bind a proxy ip with and fix useragent, and keep all cookie. But it still happen, a IP die still can fetch detail page after 26-100times get, It tell us we can still ignore robot, and catch max 100 times we will get that page. robot page is about 7KB.
-
-However, if a lot of request, will be like that 500 error
-
-For reason that the detail page is such large that waste a lot of disk space, we save the list page in the local file and the detail page you can decide whether to save it or not.
-
-### 2. 中文介绍
+### 1. 中文介绍
 
 用途： 选款，特别适合亚马逊跨境电子商务运营公司(不支持中国亚马逊)
 
@@ -63,6 +41,29 @@ For reason that the detail page is such large that waste a lot of disk space, we
 13. 可选择HTML文件保存本地
 
 分布式，高并发，跨平台，多站点，多种自定义配置，极强的容错能力是这个爬虫的特点。机器数量和IP代理足够情况下，每天每个站点可满足抓取几百万的商品数据。
+
+### 2. 英语介绍
+
+Support UAS/Japan/Germany/UK, Amazing!
+
+Catch the best seller items in Amazon USA! Using redis to store proxy ip and the category url. First fetch items list and then collect many Asin, store in mysql. Items list catch just for the Asin, and we suggest one month or several weeks to fetch list page. We just need fetch the Asin detail page and everything we get!
+
+We keep all Asin in one big table. And if catch detail 404, we set it as not valid. Also we can use API catch big rank but look not so good!
+
+So, there are two ways to get the big rank：
+
+1. catch list page(not proxy), using API get the big rank
+
+2. catch list page(not proxy), and then get asin detail page(proxy), API can not catch all the asin big rank so must use this!
+
+Due to we want list smallrank and the bigrank at the same time, but mysql update is so slow, we make two tables to save, one is smallrank, one is bigrank!
+
+We test a lot,if a ip no stop and more than 500 times http get,the list page will no robot,but the detail asin page will be robot. So we bind a proxy ip with and fix useragent, and keep all cookie. But it still happen, a IP die still can fetch detail page after 26-100times get, It tell us we can still ignore robot, and catch max 100 times we will get that page. robot page is about 7KB.
+
+However, if a lot of request, will be like that 500 error
+
+For reason that the detail page is such large that waste a lot of disk space, we save the list page in the local file and the detail page you can decide whether to save it or not.
+
 
 ## 3. 最新说明
 
@@ -150,8 +151,6 @@ v2.3
 
 ### 2. 配置爬虫
 
-我们以美国亚马逊爬虫为例，如何启动它？首先你可以编辑`config/usa_local_config.json`(其他站点类似更改)，`###` 备注的为可选编辑，其他最好不要编辑
-
 省略...
 
 ### 3. 编译程序
@@ -194,8 +193,6 @@ v2.3
 	    └── urlpool.go  3.打类目URL到redis，供4步骤使用
 ```
 
-我们来编译二进制程序
-
 省略...
 
 ### 4. 初始化数据库
@@ -203,18 +200,7 @@ v2.3
 如果不申明，都是以美国站为例。需要填充四个站点8个数据基本数据库，以及4*80=320个HASH库，要运行上面编译好的二进制, 执行:
 
 
-```
-# 分别进入不同站点的目录, 执行初始化数据库操作
-cd spiders/usa
-./USQL
-```
-
-如果你不想运行二进制, 你也可以:
-```
-go run spiders/usa/initsql.go
-```
-
-之后请将`doc/sql`下的已经抓取到的类目SQL手动导入数据库，SQL文件如下
+省略...
 
 ```
 doc
@@ -234,8 +220,6 @@ doc
 
 ### 5. 运行程序
 
-运行程序有步骤，先打URL到Redis，这样ULIST才可以爬到东西，ULIST爬到东西后就可以开UASIN爬了，因为UASIN需要代理IP，所以先要导UIP进去（导入之后打开浏览器：12345端口看爬虫情况）
-
 省略...
 
 ### 6. 如何使用代理IP
@@ -252,47 +236,8 @@ doc
 
 可以购买腾讯云，阿里云，亚马逊云，我们一般只需买一台，花费大概是每年1500左右，然后根据上述起`docker mysql/redis`（你也可以自行安装），然后在本地编译好程序，使用`./scp.sh 189.55.55.55`将二进制文件以及配置文件，传到远程机器，跑一下测试，测试没问题，再开启定时器。`scp.sh`在`sh`文件夹中。
 
-以下可选：
+省略...
 
-数据库读写分离步骤如下：
-
-Master主服务器
-
-```
-1.vim /etc/my.cnf
-
-[mysqld]
-log-bin=mysql-bin
-server-id=1
-binlog-ignore-db=information_schema
-binlog-ignore-db=beauty
-binlog-ignore-db=mysql
-
-2.service mysqld restart
-
-3.grant all privileges on *.* to 'smart'@'%' identified by '123456';
-
-4.flush tables with read lock;
-
-5.show master status;
-
- mysql-bin.000001 |     6503 |              | information_schema,beauty,mysql |
-
-6.unlock tables;
-```
-
-Slave阿里云从服务器
-
-```
-1.vim /etc/my.cnf
-[mysqld]
-server-id=2
-
-2.stop slave ;
-3.change master to master_host='192.168.2.119',master_user='smart',master_password='123456',master_log_file='mysql-bin.000001', master_log_pos=6503;
-4.start slave ;
-5.show slave status
-```
 
 ### 8. 网站端
 
